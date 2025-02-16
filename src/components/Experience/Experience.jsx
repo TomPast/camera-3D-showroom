@@ -8,7 +8,7 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import CameraModel from "../CameraModel/CameraModel";
-import { SECTIONS } from "../CameraModel/CameraModel";
+import { SECTIONS } from "../../constants/sections";
 import { AppContext } from "../../context/appContext";
 import { useContext, useLayoutEffect, useEffect } from "react";
 

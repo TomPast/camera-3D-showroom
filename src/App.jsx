@@ -32,7 +32,7 @@ export default function App() {
         </>
       )}
       <Canvas
-        className="canvas"
+        className={`canvas ${!isLoading ? "canvas--visible" : ""}`}
         camera={{
           fov: 25,
           position: [0, 0, 15],

@@ -4,8 +4,7 @@ import { AppContext } from "../../context/appContext";
 
 import "./Menu.css";
 
-import { SECTIONS } from "../CameraModel/CameraModel";
-
+import { SECTIONS } from "../../constants/sections";
 export default function Menu() {
   const { scrollContext, activeSection } = useContext(AppContext);
 

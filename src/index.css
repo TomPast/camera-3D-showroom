@@ -1,15 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 html,
 body {
   position: fixed;
   font-family: "Raleway", sans-serif;
-
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
   background-color: #dedef1;
   opacity: 1;
   background-image:
@@ -33,19 +31,33 @@ body {
   height: 100%;
 }
 
+.canvas {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s ease-in-out,
+    transform 1s ease-in-out;
+}
+
+.canvas--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .canon-info {
   font-family: "Raleway", sans-serif;
   line-height: 1.5;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0s;
+  font-size: 1.2rem;
 }
 
-.canon-info p {
-  font-size: 1.2rem;
+.canon-info > * {
   opacity: 0;
+  transform: translateY(20px);
   animation: fadeInUp 0.8s ease forwards;
-  animation-delay: 0.3s;
 }
 
 .canon-info h2 {
@@ -53,8 +65,6 @@ body {
   font-weight: 900;
   margin-bottom: 10px;
   margin-top: 0;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease forwards;
   animation-delay: 0.1s;
 }
 
@@ -62,6 +72,43 @@ body {
   font-size: 2.2rem;
   margin-top: 0;
   margin-bottom: 0;
+  animation-delay: 0.2s;
+}
+
+.canon-info p {
+  animation-delay: 0.3s;
+}
+
+.canon-info h4 {
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 12px;
+  animation-delay: 0.4s;
+}
+
+.canon-info ul {
+  margin: 0;
+  animation-delay: 0.5s;
+}
+
+.canon-info button {
+  animation-delay: 0.6s;
+}
+
+.canon-info .list-label {
+  font-weight: 700;
+}
+
+.learn-more-button {
+  color: #ed2e34;
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #b12a3a;
+  }
 }
 
 @keyframes fadeInUp {
