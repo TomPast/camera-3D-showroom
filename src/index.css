@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+html,
+body {
+  position: fixed;
+  font-family: "Raleway", sans-serif;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #dedef1;
+  opacity: 1;
+  background-image:
+    radial-gradient(circle at center center, #ffffff, #dedef1),
+    repeating-radial-gradient(
+      circle at center center,
+      #ffffff,
+      #ffffff,
+      10px,
+      transparent 20px,
+      transparent 10px
+    );
+  background-blend-mode: multiply;
+}
+
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.canon-info {
+  font-family: "Raleway", sans-serif;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.canon-info p {
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.canon-info h2 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  margin-top: 0;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.buy-now-button {
+  position: fixed;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  bottom: 10%;
+  right: 10%;
+  background-color: #ed2e34;
+  color: #fff;
+  border: none;
+  padding: 16px 26px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #fc4056;
+  }
+}
