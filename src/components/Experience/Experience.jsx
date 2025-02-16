@@ -2,17 +2,15 @@ import {
   PresentationControls,
   ContactShadows,
   Environment,
-  Html,
   useProgress,
   ScrollControls,
   Scroll,
 } from "@react-three/drei";
-import { Perf } from "r3f-perf";
 import { Suspense } from "react";
 import CameraModel from "../CameraModel/CameraModel";
 import { SECTIONS } from "../CameraModel/CameraModel";
 import { AppContext } from "../../context/appContext";
-import { useRef, useContext, useLayoutEffect, useEffect } from "react";
+import { useContext, useLayoutEffect, useEffect } from "react";
 
 function LoadingHandler({ setIsLoading, setLoadingProgress }) {
   const { progress } = useProgress();
@@ -35,8 +33,6 @@ function LoadingHandler({ setIsLoading, setLoadingProgress }) {
 export default function Experience() {
   const { setIsLoading, setLoadingProgress } = useContext(AppContext);
 
-  const directionalLight = useRef();
-
   return (
     <>
       <Suspense
@@ -50,7 +46,6 @@ export default function Experience() {
         <ambientLight intensity={0.5} />
 
         <spotLight
-          ref={directionalLight}
           position={[10, 10, 10]}
           angle={0.15}
           penumbra={1}
@@ -58,7 +53,6 @@ export default function Experience() {
           castShadow
         />
         <directionalLight
-          ref={directionalLight}
           position={[-0.3, 0.0, 10]}
           angle={0.15}
           penumbra={1}
@@ -77,7 +71,7 @@ export default function Experience() {
               className="canon-info"
               style={{
                 position: "absolute",
-                top: "25vh",
+                top: "20vh",
                 left: "50vw",
                 width: "40vw",
               }}

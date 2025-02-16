@@ -5,4 +5,8 @@ export const AppContext = createContext({
   setIsLoading: () => {},
   loadingProgress: 0,
   setLoadingProgress: () => {},
+  scrollContext: null,
+  setScrollContext: () => {},
+  activeSection: 0,
+  setActiveSection: () => {},
 });

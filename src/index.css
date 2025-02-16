@@ -58,6 +58,12 @@ body {
   animation-delay: 0.1s;
 }
 
+.canon-info h3 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -66,26 +72,5 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-.buy-now-button {
-  position: fixed;
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-  bottom: 10%;
-  right: 10%;
-  background-color: #ed2e34;
-  z-index: 1000;
-  color: #fff;
-  border: none;
-  padding: 16px 26px;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #fc4056;
   }
 }

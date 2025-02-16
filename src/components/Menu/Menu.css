@@ -20,24 +20,59 @@
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
-    border-radius: 30px;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 
   .menu-item {
+    position: relative;
     padding: 8px 16px;
-    transition: all 0.3s ease;
-    border-radius: 8px;
     cursor: pointer;
-    &:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
+    transition: all 0.3s ease;
 
     p {
       margin: 0;
       font-weight: 500;
       color: #333;
+      text-transform: uppercase;
     }
+
+    &.active {
+      ::after {
+        content: "";
+        display: block;
+        width: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 2px;
+        background: #ed2e34;
+        position: absolute;
+        bottom: 0;
+        animation: underlineAppear 0.3s ease forwards;
+      }
+    }
+  }
+}
+
+.menu-item {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.menu-item:hover {
+  p {
+    color: black;
+  }
+}
+
+@keyframes underlineAppear {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 40px;
+    opacity: 1;
   }
 }

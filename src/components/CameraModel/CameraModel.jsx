@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/canon-at-1-retro-camera-9de66868d0f240e9
 Title: Canon AT-1 Retro Camera
 */
 
-import React, { useRef, useState } from "react";
-import { Html, useGLTF, useScroll } from "@react-three/drei";
+import React, { useRef } from "react";
+import { useGLTF, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../../context/appContext";
 
 export const SECTIONS = [
   {
@@ -21,6 +22,18 @@ export const SECTIONS = [
           affordable, manual-focus alternative to the AE-1. With its mechanical
           reliability, robust build, and timeless design, it's a favorite among
           film photography enthusiasts and collectors.
+        </p>
+        <p>
+          This camera offers a perfect blend of manual control and mechanical
+          reliability, making it one of the most iconic cameras of its time. Its
+          sleek, classic design continues to inspire modern-day photographers
+          who appreciate the tactile experience of shooting film.
+        </p>
+        <p>
+          While the AT-1 is known for its durability, it's also packed with
+          advanced features that make it a joy to use. Whether you're a novice
+          or an experienced photographer, the Canon AT-1 offers a truly
+          enjoyable shooting experience.
         </p>
       </>
     ),
@@ -39,6 +52,20 @@ export const SECTIONS = [
           The Canon AT-1 features a precise manual focus system, allowing
           photographers to achieve perfect sharpness without relying on
           automation. The focus ring offers smooth and accurate adjustments.
+        </p>
+        <p>
+          This manual system gives photographers complete control over focus,
+          allowing them to capture images with great precision, even in
+          challenging conditions.
+        </p>
+        <p>
+          The focusing mechanism is smooth and precise, providing instant
+          tactile feedback that enhances the overall shooting experience.
+        </p>
+        <p>
+          Additionally, the AT-1's large, bright viewfinder allows for easy
+          composition and focusing, making it an excellent choice for
+          photographers who appreciate a hands-on approach to their craft.
         </p>
       </>
     ),
@@ -61,6 +88,21 @@ export const SECTIONS = [
           seconds, plus a bulb mode for long exposures, perfect for creative
           photography.
         </p>
+        <p>
+          The AT-1's shutter dial is easy to adjust, offering a precise range of
+          exposure times. From freezing fast-moving subjects to capturing
+          long-exposure shots in low light, the AT-1 has you covered.
+        </p>
+        <p>
+          Its exposure control system provides flexibility, allowing users to
+          shoot in a variety of lighting conditions, while still maintaining
+          full control over exposure.
+        </p>
+        <p>
+          Whether you're shooting in bright sunlight or capturing stunning night
+          scenes, the AT-1's shutter speed dial ensures your photos come out
+          exactly how you envision them.
+        </p>
       </>
     ),
     cameraPosition: {
@@ -81,6 +123,21 @@ export const SECTIONS = [
           beginners and professional photographers looking for precise exposure
           control.
         </p>
+        <p>
+          The built-in light meter continuously measures the light in the scene
+          and displays this information in the viewfinder, helping you adjust
+          settings to achieve perfect exposure every time.
+        </p>
+        <p>
+          This feature is incredibly useful in various lighting situations,
+          particularly for beginners who may not yet be comfortable with manual
+          metering. It's an easy and reliable way to ensure your images are
+          correctly exposed without relying on automation.
+        </p>
+        <p>
+          As a bonus, the light meter works even in low light conditions, making
+          the Canon AT-1 a versatile camera for any environment.
+        </p>
       </>
     ),
     cameraPosition: {
@@ -94,44 +151,79 @@ export const SECTIONS = [
     content: (
       <>
         <button> Learn more about Canon AT-1</button>
+        <p>
+          Interested in the history and technical specifications of the Canon
+          AT-1? Click below to learn more about this remarkable camera, its
+          place in the world of photography, and how it has shaped the craft for
+          over four decades.
+        </p>
+        <p>
+          From its creation to its legacy, the Canon AT-1 continues to inspire
+          photographers who value the beauty of film photography and the craft
+          of manual control.
+        </p>
       </>
     ),
     cameraPosition: {
-      position: { x: 0, y: 1, z: 10 },
-      lookAt: { x: 0, y: 0.5, z: 0 },
+      position: { x: 0, y: 1, z: 15 },
     },
     objectPosition: {
-      rotation: { x: 0, y: Math.PI * 0.07, z: 0 },
+      rotation: { x: 0.1, y: 0, z: 0 },
     },
   },
 ];
 
 export default function CameraModel(props) {
   const { nodes, materials, ...model } = useGLTF("/models/canon.glb");
+  const { setScrollContext, setActiveSection } = useContext(AppContext);
+
+  useEffect(() => {
+    const handleMenuClick = (event) => {
+      if (event.detail && typeof event.detail.sectionIndex === "number") {
+        scrollTo(event.detail.sectionIndex);
+      }
+    };
+
+    window.addEventListener("menuClick", handleMenuClick);
+
+    return () => {
+      window.removeEventListener("menuClick", handleMenuClick);
+    };
+  }, [scrollTo]);
 
   materials.CAM0001_Textures.depthWrite = true;
   materials.CAM0001_Textures.depthTest = true;
 
   const groupRef = useRef();
   const scroll = useScroll();
-  const [currentSection, setCurrentSection] = useState(0);
+
+  useEffect(() => {
+    setScrollContext(scroll);
+  }, [scroll]);
 
   useFrame((state, delta) => {
     const scrollOffset = scroll.offset;
     const sectionCount = SECTIONS.length;
-    const sectionIndex = Math.floor(
-      Math.min(scrollOffset * (sectionCount - 1), sectionCount - 1)
+
+    // Calculer l'index avec une transition plus progressive pour le menu
+    const rawIndex = scrollOffset * (sectionCount - 1);
+    const menuSectionIndex = Math.round(Math.min(rawIndex, sectionCount - 1));
+    setActiveSection(menuSectionIndex);
+
+    // Pour les animations, utiliser l'index non arrondi
+    const currentSectionIndex = Math.floor(rawIndex);
+    const currentSection = SECTIONS[currentSectionIndex];
+    const nextSection =
+      SECTIONS[Math.min(currentSectionIndex + 1, sectionCount - 1)];
+
+    if (!currentSection || !nextSection) return;
+
+    // Calculer le facteur de progression entre les sections pour l'animation
+    const sectionProgress = smoothstep(
+      0.2,
+      0.8,
+      rawIndex - currentSectionIndex
     );
-
-    // Modifier le calcul de sectionProgress pour créer un effet de "palier"
-    const rawProgress = (scrollOffset * (sectionCount - 1)) % 1;
-    const sectionProgress = smoothstep(0.2, 0.8, rawProgress);
-
-    setCurrentSection(sectionIndex);
-
-    // Get current and next section positions
-    const currentSection = SECTIONS[sectionIndex];
-    const nextSection = SECTIONS[Math.min(sectionIndex + 1, sectionCount - 1)];
 
     // Interpolate camera position and rotation
     state.camera.position.x = lerp(
