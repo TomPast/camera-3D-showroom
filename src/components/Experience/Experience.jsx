@@ -5,6 +5,7 @@ import {
   useProgress,
   ScrollControls,
   Scroll,
+  Html,
 } from "@react-three/drei";
 import { Suspense } from "react";
 import CameraModel from "../CameraModel/CameraModel";
@@ -87,6 +88,26 @@ export default function Experience() {
                 </div>
               ))}
             </div>
+            {/* Ajout du footer */}
+            <footer
+              style={{
+                position: "absolute",
+                bottom: "0",
+                left: "0",
+                width: "100%",
+                padding: "0",
+                textAlign: "center",
+                color: "black",
+                fontSize: ".7rem",
+                transform: `translateY(${SECTIONS.length * 100}vh)`,
+                marginBottom: "5px",
+              }}
+            >
+              This website is not affiliated with Canon Inc. Canon logo is a
+              trademark of Canon Inc.
+              <br />
+              3D Model "Canon AT-1 Retro Camera" from Aleixo Alonso.
+            </footer>
           </Scroll>
 
           <PresentationControls

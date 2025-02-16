@@ -42,7 +42,7 @@ export const SECTIONS = [
       position: { x: 0, y: 1, z: 15 },
     },
     objectPosition: {
-      rotation: { x: 0.1, y: 0, z: 0 },
+      rotation: { x: 0, y: Math.PI * 0.15, z: 0 },
     },
   },
   {
@@ -177,7 +177,7 @@ export const SECTIONS = [
       position: { x: 0, y: 1, z: 15 },
     },
     objectPosition: {
-      rotation: { x: 0.1, y: Math.PI * 0.15, z: 0 },
+      rotation: { x: 0, y: Math.PI * 0.15, z: 0 },
     },
   },
 ];
