@@ -5,6 +5,8 @@ import { useState } from "react";
 import { AppContext } from "./context/appContext.js";
 import GlobalLoader from "./components/GlobalLoader/GlobalLoader.jsx";
 import FloatingButton from "./components/FloatingButton/FloatingButton.jsx";
+import MobileWarning from "./components/MobileWarning/MobileWarning.jsx";
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -24,6 +26,7 @@ export default function App() {
         setActiveSection,
       }}
     >
+      <MobileWarning />
       <GlobalLoader />
       {!isLoading && (
         <>
