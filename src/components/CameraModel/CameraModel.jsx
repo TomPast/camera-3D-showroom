@@ -45,12 +45,10 @@ export default function CameraModel(props) {
     const scrollOffset = scroll.offset;
     const sectionCount = SECTIONS.length;
 
-    // Calculer l'index avec une transition plus progressive pour le menu
     const rawIndex = scrollOffset * (sectionCount - 1);
     const menuSectionIndex = Math.round(Math.min(rawIndex, sectionCount - 1));
     setActiveSection(menuSectionIndex);
 
-    // Pour les animations, utiliser l'index non arrondi
     const currentSectionIndex = Math.floor(rawIndex);
     const currentSection = SECTIONS[currentSectionIndex];
     const nextSection =
@@ -58,14 +56,12 @@ export default function CameraModel(props) {
 
     if (!currentSection || !nextSection) return;
 
-    // Calculer le facteur de progression entre les sections pour l'animation
     const sectionProgress = smoothstep(
       0.2,
       0.8,
       rawIndex - currentSectionIndex
     );
 
-    // Interpolate camera position and rotation
     state.camera.position.x = lerp(
       currentSection.cameraPosition.position.x,
       nextSection.cameraPosition.position.x,
@@ -82,12 +78,10 @@ export default function CameraModel(props) {
       sectionProgress
     );
 
-    // Handle object position and rotation if defined in sections
     if (groupRef.current && currentSection.objectPosition) {
       const nextObjectPosition =
         nextSection.objectPosition || currentSection.objectPosition;
 
-      // Object rotation
       groupRef.current.rotation.x = lerp(
         currentSection.objectPosition.rotation.x,
         nextObjectPosition.rotation.x,
@@ -105,7 +99,6 @@ export default function CameraModel(props) {
       );
     }
 
-    // Handle lookAt transition
     if (
       currentSection.cameraPosition.lookAt ||
       nextSection.cameraPosition.lookAt
@@ -192,7 +185,6 @@ function lerp(start, end, t) {
   return start * (1 - t) + end * t;
 }
 
-// Ajouter cette fonction en bas du fichier
 function smoothstep(min, max, value) {
   const x = Math.max(0, Math.min(1, (value - min) / (max - min)));
   return x * x * (3 - 2 * x);

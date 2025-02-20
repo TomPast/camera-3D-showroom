@@ -5,7 +5,6 @@ import {
   useProgress,
   ScrollControls,
   Scroll,
-  Html,
 } from "@react-three/drei";
 import { Suspense } from "react";
 import CameraModel from "../CameraModel/CameraModel";
@@ -88,7 +87,6 @@ export default function Experience() {
                 </div>
               ))}
             </div>
-            {/* Ajout du footer */}
             <footer
               style={{
                 position: "absolute",

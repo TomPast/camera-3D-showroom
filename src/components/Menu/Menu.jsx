@@ -9,7 +9,7 @@ export default function Menu() {
   const { scrollContext, activeSection } = useContext(AppContext);
 
   const handleClick = (index) => {
-    const sectionHeight = scrollContext.el.scrollHeight / SECTIONS.length; // Hauteur réelle d'une section
+    const sectionHeight = scrollContext.el.scrollHeight / SECTIONS.length;
     let scrollPosition = index * sectionHeight + index * 40 - 50;
     if (index === SECTIONS.length - 1) {
       scrollPosition = scrollContext.el.scrollHeight - 100;

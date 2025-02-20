@@ -1,6 +1,6 @@
 # 3D Retro Camera Showcase
 
-![Retro Camera Showcase](./public/screenshot.jpg)
+![Retro Camera Showcase](./public/preview.gif)
 
 ## Description
 
