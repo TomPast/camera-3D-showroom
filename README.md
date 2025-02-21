@@ -10,7 +10,7 @@ The 3D model and the static logo used on the website are included here **solely 
 
 ## Usage and Purpose
 
-- **Purpose**: Improve my 3D modeling, web development, and design skills by working on a realistic project.
+- **Purpose**: Improve my 3D web development, and design skills by working on a realistic project.
 - **Non-commercial**: This project is purely for educational and training purposes and is not intended for profit.
 - **Copyright**: All intellectual property rights to the Canon logo and other assets used belong to their respective owners.
 
